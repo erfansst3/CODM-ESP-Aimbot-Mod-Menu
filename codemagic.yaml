@@ -7,9 +7,6 @@ workflows:
       ndk: r21d
     scripts:
 
-      - name: Clean
-        script: ./gradlew clean
-
       - name: Build Debug APK
         script: ./gradlew assembleDebug --stacktrace
 
