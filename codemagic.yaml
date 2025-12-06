@@ -8,9 +8,6 @@ workflows:
 
     scripts:
 
-      - name: Accept licenses
-        script: yes | $SDKMANAGER --licenses
-
       - name: Install NDK 25.1
         script: $SDKMANAGER "ndk;25.1.8937393"
 
