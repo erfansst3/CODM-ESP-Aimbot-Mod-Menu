@@ -10,16 +10,10 @@ workflows:
         SDKMANAGER: /usr/local/android-sdk/cmdline-tools/latest/bin/sdkmanager
 
     scripts:
-      - name: Install Android SDK + Tools
-        script: |
-          sudo mkdir -p $ANDROID_HOME/cmdline-tools
-          cd $ANDROID_HOME/cmdline-tools
-          sudo wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdline.zip
-          sudo unzip cmdline.zip -d latest
-          yes | $SDKMANAGER --licenses
-          $SDKMANAGER "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+      - name: Accept licenses
+        script: yes | $SDKMANAGER --licenses
 
-      - name: Install NDK
+      - name: Install NDK only
         script: |
           $SDKMANAGER "ndk;25.1.8937393"
 
