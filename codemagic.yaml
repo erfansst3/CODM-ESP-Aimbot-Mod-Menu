@@ -5,14 +5,8 @@ workflows:
 
     environment:
       java: 17
-
+      ndk: r21d
     scripts:
-
-      - name: Install NDK 25.1
-        script: $SDKMANAGER "ndk;25.1.8937393"
-
-      - name: Gradle permissions
-        script: chmod +x ./gradlew
 
       - name: Clean
         script: ./gradlew clean
