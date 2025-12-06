@@ -9,7 +9,7 @@ workflows:
 
       - name: Build Debug APK
         working_directory: android
-        script: ./gradlew assembleDebug --stacktrace
+        script: ./gradlew assembleDebug
 
     artifacts:
       - app/build/outputs/**/*.apk
