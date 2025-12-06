@@ -15,10 +15,6 @@ jobs:
       - checkout
 
       - run:
-          name: Accept licenses
-          command: yes | sdkmanager --licenses
-
-      - run:
           name: Install NDK 25.1
           command: sdkmanager "ndk;25.1.8937393"
 
