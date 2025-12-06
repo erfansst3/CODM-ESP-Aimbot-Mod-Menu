@@ -5,17 +5,8 @@ workflows:
 
     environment:
       java: 17
-      vars:
-        ANDROID_HOME: /Library/Android/sdk
-        SDKMANAGER: /Library/Android/sdk/cmdline-tools/latest/bin/sdkmanager
 
     scripts:
-      - name: Fix SDKMANAGER path fallback
-        script: |
-          if [ ! -f "$SDKMANAGER" ]; then
-            export SDKMANAGER="/Library/Android/sdk/cmdline-tools/bin/sdkmanager"
-          fi
-          echo "Using sdkmanager at: $SDKMANAGER"
 
       - name: Accept licenses
         script: yes | $SDKMANAGER --licenses
