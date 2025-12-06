@@ -6,24 +6,30 @@ workflows:
     environment:
       java: 17
       vars:
-        ANDROID_HOME: /usr/local/android-sdk
-        SDKMANAGER: /usr/local/android-sdk/cmdline-tools/latest/bin/sdkmanager
+        ANDROID_HOME: /Library/Android/sdk
+        SDKMANAGER: /Library/Android/sdk/cmdline-tools/latest/bin/sdkmanager
 
     scripts:
+      - name: Fix SDKMANAGER path fallback
+        script: |
+          if [ ! -f "$SDKMANAGER" ]; then
+            export SDKMANAGER="/Library/Android/sdk/cmdline-tools/bin/sdkmanager"
+          fi
+          echo "Using sdkmanager at: $SDKMANAGER"
+
       - name: Accept licenses
         script: yes | $SDKMANAGER --licenses
 
-      - name: Install NDK only
-        script: |
-          $SDKMANAGER "ndk;25.1.8937393"
+      - name: Install NDK 25.1
+        script: $SDKMANAGER "ndk;25.1.8937393"
 
-      - name: Set permissions for Gradle
+      - name: Gradle permissions
         script: chmod +x ./gradlew
 
-      - name: Clean project
+      - name: Clean
         script: ./gradlew clean
 
-      - name: Build Debug APK with NDK
+      - name: Build Debug APK
         script: ./gradlew assembleDebug --stacktrace
 
     artifacts:
