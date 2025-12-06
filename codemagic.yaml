@@ -1,7 +1,6 @@
 workflows:
   android-ndk-debug:
     name: Android NDK Debug Build
-    max_build_duration: 60
 
     environment:
       java: 17
